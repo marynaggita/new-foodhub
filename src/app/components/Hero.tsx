@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/material';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,7 +7,28 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import  food  from '../images/food.jpg';
+import Grid from '@mui/material/Grid';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { brown, grey } from '@mui/material/colors';
+import { Montserrat } from 'next/font/google';
+
+const xtheme = createTheme({
+  typography: {
+    fontFamily: 'Montserrat, Arial, sans-serif',
+  },
+  palette: {
+    primary: {
+      main: brown[900],  // Lighter shade of brown
+    },
+    secondary: {
+      main: grey[300],   // Lighter shade of grey
+    },
+    background: {
+      paper: brown[50], // Light brown background
+      default: grey[50],    // Light grey for paper elements
+    },
+  },
+});
 
 export default function Hero() {
   const [email, setEmail] = useState('');
@@ -25,7 +45,7 @@ export default function Hero() {
       });
 
       const data = await res.json();
-      
+
       if (res.ok) {
         setMessage('Email saved Successfully');
       } else if (res.status === 409) {
@@ -45,130 +65,145 @@ export default function Hero() {
   };
 
   return (
-   <Box
-  id="hero"
-  sx={({
-    width: '100%',
-    backgroundImage: 'url(/images/food.jpg)',
-    backgroundSize: 'cover', // Adjust as needed
-    backgroundPosition: 'center', // Adjust as needed
-    backgroundRepeat: 'no-repeat',
-  })}
->
-      <Container
+    <ThemeProvider theme={xtheme}>
+      <Box
+        id="hero"
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          pt: { xs: 14, sm: 20 },
-          pb: { xs: 8, sm: 12 },
+          width: '100%',
+          height: '100vh', // Increase the height here
+          background: `linear-gradient(to right, ${xtheme.palette.primary.main} 0%, ${xtheme.palette.secondary.main} 100%)`,
+          opacity: 0.9,
+          boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
         }}
       >
-        <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }} >
-          <Typography
-            variant="h1"
-            
-            sx={{
-              color: (theme) =>
-                  theme.palette.mode === 'light' ? 'primary.light' : 'secondary.light',
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignSelf: 'center',
-              textAlign: 'center',
-              fontSize: 'clamp(3.5rem, 10vw, 4rem)',
-              backgroundImage: "url('../images/food.jpg')",
-            }}
-          >
-            Our latest&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={{
-                fontSize: 'clamp(3rem, 10vw, 4rem)',
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? 'secondary.light' : 'primary.light',
-              }}
-            >
-              products
-            </Typography>
-          </Typography>
-          <Typography
-            textAlign="center"
-            color=" #cfeeed "
-            sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
-          >
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
-          </Typography>
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignSelf="center"
-            spacing={1}
-            useFlexGap
-            sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
-          >
-            <TextField
-              id="outlined-basic"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              inputProps={{
-                autoComplete: 'off',
-                'aria-label': 'Enter your email address',
-              }}
-              InputProps={{
-                sx: {
-                  backgroundColor: 'background.paper', // Set the background color of the input field
-                },
-              }}
-            />
-            <Button variant="contained" color="primary" onClick={handleClick}>
-              Start now
-            </Button>
-          </Stack>
-          {message && (
-            <Typography variant="body1" textAlign="center" sx={{ mt: 2, color: 'error.main' }}>
-              {message}
-            </Typography>
-          )}
-          <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
-            By clicking &quot;Start now&quot; you agree to our&nbsp;
-            <Link href="#" color="primary">
-              Terms & Conditions
-            </Link>
-            .
-          </Typography>
-        </Stack>
-        {/* <Box
-          id="image"
-          sx={(theme) => ({
-            mt: { xs: 8, sm: 10 },
-            alignSelf: 'center',
-            height: { xs: 200, sm: 700 },
-            width: '100%',
-            backgroundImage:
-              theme.palette.mode === 'light'
-                ? 'url("/static/images/templates/templates-images/hero-light.png")'
-                : 'url("/static/images/templates/templates-images/hero-dark.png")',
-            backgroundSize: 'cover',
-            borderRadius: '10px',
-            outline: '1px solid',
-            outlineColor:
-              theme.palette.mode === 'light'
-                ? alpha('#BFCCD9', 0.5)
-                : alpha('#9CCCFC', 0.1),
-            boxShadow:
-              theme.palette.mode === 'light'
-                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
-          })}
-        /> */}
-      </Container>
-    </Box>
+        <Container
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            pt: { xs: 14, sm: 20 },
+            pb: { xs: 8, sm: 12 },
+            height: '100%', // Ensure container takes full height
+          }}
+        >
+          <Grid container spacing={2} sx={{ height: '0%' }}>
+            {/* Column for Text */}
+            <Grid item xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 2 }}>
+              <Stack spacing={2} useFlexGap sx={{ width: '100%' }}>
+              <Typography
+      variant="h1"
+      sx={{
+        color: (theme) =>
+          theme.palette.mode === 'light' ? 'secondary.light' : 'primary.light',
+        textAlign: 'center',
+        fontSize: 'clamp(3.5rem, 10vw, 4rem)',
+        fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
+      }}
+    >
+      Our latest &nbsp;
+      <Typography
+        component="span"
+        variant="h1"
+        sx={{
+          fontSize: 'clamp(3rem, 10vw, 4rem)',
+          color: (theme) =>
+            theme.palette.mode === 'light' ? 'secondary.light' : 'primary.light',
+          fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
+        }}
+      >
+        teas
+      </Typography>
+    </Typography>
+                <Typography
+                  textAlign="center"
+                  color="#fcfcfc"
+                  sx={{ width: '100%' }}
+                  fontSize="24px"
+                  fontStyle="Montserrat"
+                >
+                  Lets share a satisfying tea party experience together with your guests
+                  using the best local tea spices 
+                </Typography>
+                <Typography
+                  textAlign="center"
+                  color="#cfeeed"
+                  sx={{ width: '100%' }}
+                >
+                  Make your order now and it will be delivered
+                </Typography>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={1}
+                  useFlexGap
+                  sx={{ pt: 2, width: '100%', alignItems: 'center', justifyContent: 'center' }
+                }
+                >
+                  <TextField
+                    id="outlined-basic"
+                    hiddenLabel
+                    size="small"
+                    variant="outlined"
+                    aria-label="Enter your email address"
+                    placeholder="Your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    inputProps={{
+                      autoComplete: 'off',
+                      'aria-label': 'Enter your email address',
+                    }}
+                    InputProps={{
+                      sx: {
+                        backgroundColor: 'background.paper',
+                      },
+                    }}
+                  />
+                  <Button variant="contained" color="primary" onClick={handleClick}>
+                    Subscribe
+                  </Button>
+                </Stack>
+                {message && (
+                  <Typography variant="body1" textAlign="center" sx={{ mt: 2, color: 'error.main' }}>
+                    {message}
+                  </Typography>
+                )}
+                <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 ,fontWeight: 'bold' ,color: '#ffffff' }}>
+                  By clicking &quot;Subscribe&quot; you agree to our&nbsp;
+                  <Link href="#" color="secondary">
+                    Terms & Conditions
+                  </Link>
+                  .
+                </Typography>
+              </Stack>
+            </Grid>
+
+            {/* Column for Cropped Image */}
+            <Grid item xs={12} sm={6}>
+              <Box
+                sx={{
+                  height: '100%',
+                  width: '100%',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
+                <Box
+                  sx={{
+                    height: '100%',
+                    width: '100%',
+                    backgroundImage: `url(https://cdn.shopify.com/s/files/1/0382/1836/7107/t/3/assets/dehydrated-tea-hero-image-1639694925155.jpg?v=1639694928)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 }

@@ -13,7 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from '../components/ToggleColorMode';
 
 const logoStyle = {
-  width: '60px',
+  width: '80px', // Adjusted width
   height: 'auto',
   cursor: 'pointer',
 };
@@ -53,6 +53,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
           bgcolor: 'transparent',
           backgroundImage: 'none',
           mt: 2,
+          height: '80px', // Increased height
         }}
       >
         <Container maxWidth="lg">
@@ -69,7 +70,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                   ? 'rgba(255, 255, 255, 0.4)'
                   : 'rgba(0, 0, 0, 0.4)',
               backdropFilter: 'blur(24px)',
-              maxHeight: 40,
+              height: '100%', // Full height of the AppBar
               border: '1px solid',
               borderColor: 'divider',
               boxShadow:
@@ -88,7 +89,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
               }}
             >
               <img
-                src="../images/NergieTreats.png"
+                src="../images/Kachaii.com2.png"
                 style={logoStyle}
                 alt="logo of nergie treats"
               />
@@ -172,14 +173,12 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 onClick={toggleDrawer(true)}
                 sx={{ minWidth: '30px', p: '4px' }}
               >
-                
                 <MenuIcon />
-                
               </Button>
               <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
                 <Box
                   sx={{
-                    minWidth: '60dvw',
+                    minWidth: '70vw', // Adjusted width
                     p: 2,
                     backgroundColor: 'background.paper',
                     flexGrow: 1,

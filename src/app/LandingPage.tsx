@@ -18,6 +18,9 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import getLPTheme from './GetLPTheme';
 import Image from 'next/image';
+import FoodGrid from './components/FoodItems';
+import TwoColumnLayout from './components/TryHero'
+import TeaPartySection from './components/TeaParty';
 
 // This is the ToggleCustomTheme component
 interface ToggleCustomThemeProps {
@@ -83,7 +86,10 @@ const [mode, setMode] = React.useState<PaletteMode>('light');
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
       <Box sx={{ bgcolor: 'background.default' }}>
-        <LogoCollection />
+      <TeaPartySection/>
+      <TwoColumnLayout/>
+    
+        <FoodGrid />
         <Features />
         <Divider />
         <Testimonials />
