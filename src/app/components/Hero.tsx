@@ -90,30 +90,28 @@ export default function Hero() {
             {/* Column for Text */}
             <Grid item xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 2 }}>
               <Stack spacing={2} useFlexGap sx={{ width: '100%' }}>
-              <Typography
-      variant="h1"
-      sx={{
-        color: (theme) =>
-          theme.palette.mode === 'light' ? 'secondary.light' : 'primary.light',
-        textAlign: 'center',
-        fontSize: 'clamp(3.5rem, 10vw, 4rem)',
-        fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
-      }}
-    >
-      Our latest &nbsp;
-      <Typography
-        component="span"
-        variant="h1"
-        sx={{
-          fontSize: 'clamp(3rem, 10vw, 4rem)',
-          color: (theme) =>
-            theme.palette.mode === 'light' ? 'secondary.light' : 'primary.light',
-          fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
-        }}
-      >
-        teas
-      </Typography>
-    </Typography>
+                <Typography
+                  variant="h3"
+                  sx={{
+
+                    textAlign: 'center',
+
+                    fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
+                  }}
+                >
+                  Where Every Occasion Deserves &nbsp;
+                  <Typography
+                    component="span"
+                    variant="h3"
+                    sx={{
+                      // fontSize: 'clamp(rem, vw, 1rem)',
+
+                      fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
+                    }}
+                  >
+                    the Perfect Cup
+                  </Typography>
+                </Typography>
                 <Typography
                   textAlign="center"
                   color="#fcfcfc"
@@ -122,7 +120,7 @@ export default function Hero() {
                   fontStyle="Montserrat"
                 >
                   Lets share a satisfying tea party experience together with your guests
-                  using the best local tea spices 
+                  using the best local tea spices
                 </Typography>
                 <Typography
                   textAlign="center"
@@ -136,7 +134,7 @@ export default function Hero() {
                   spacing={1}
                   useFlexGap
                   sx={{ pt: 2, width: '100%', alignItems: 'center', justifyContent: 'center' }
-                }
+                  }
                 >
                   <TextField
                     id="outlined-basic"
@@ -166,7 +164,7 @@ export default function Hero() {
                     {message}
                   </Typography>
                 )}
-                <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 ,fontWeight: 'bold' ,color: '#ffffff' }}>
+                <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8, fontWeight: 'bold', color: '#ffffff' }}>
                   By clicking &quot;Subscribe&quot; you agree to our&nbsp;
                   <Link href="#" color="secondary">
                     Terms & Conditions

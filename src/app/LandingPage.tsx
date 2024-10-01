@@ -18,7 +18,7 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import getLPTheme from './GetLPTheme';
 import Image from 'next/image';
-import FoodGrid from './components/FoodItems';
+import RateCard from './components/RateCard';
 import TwoColumnLayout from './components/TryHero'
 import TeaPartySection from './components/TeaParty';
 
@@ -85,12 +85,19 @@ const [mode, setMode] = React.useState<PaletteMode>('light');
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
+      <Divider />
       <Box sx={{ bgcolor: 'background.default' }}>
+      <Divider />
       <TeaPartySection/>
-      <TwoColumnLayout/>
+      <Divider />
+      <Divider />
+      
+      <br/>
+      <Divider />
+      {/* <TwoColumnLayout/> */}
     
-        <FoodGrid />
-        <Features />
+        <RateCard />
+        {/* <Features /> */}
         <Divider />
         <Testimonials />
         <Divider />
