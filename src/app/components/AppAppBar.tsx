@@ -89,10 +89,22 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
               }}
             >
               <img
-                src="../images/Kachaii.com2.png"
+                src="../images/newkachai.png"
                 style={logoStyle}
                 alt="logo of nergie treats"
               />
+              <Typography 
+                variant="body2" 
+                color="#a52a2a" 
+                sx={{
+                  fontWeight: 'bold',
+                  fontFamily: "serif", 
+              
+                }}
+              >
+                KACHAI DOTCOM
+              </Typography>
+
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem
                   onClick={() => scrollToSection('features')}

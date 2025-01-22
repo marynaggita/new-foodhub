@@ -93,10 +93,9 @@ export default function Hero() {
                 <Typography
                   variant="h3"
                   sx={{
-
                     textAlign: 'center',
-
                     fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
+                    fontSize: { xs: '2rem', sm: '3rem', md: '4rem' }, // Adjust font size for different screen widths
                   }}
                 >
                   Where Every Occasion Deserves &nbsp;
@@ -104,9 +103,8 @@ export default function Hero() {
                     component="span"
                     variant="h3"
                     sx={{
-                      // fontSize: 'clamp(rem, vw, 1rem)',
-
                       fontFamily: 'Montserrat, Arial, sans-serif', // Apply Montserrat font
+                      fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
                     }}
                   >
                     the Perfect Cup
@@ -117,7 +115,7 @@ export default function Hero() {
                   color="#fcfcfc"
                   sx={{ width: '100%' }}
                   fontSize="24px"
-                  fontStyle="Montserrat"
+                  sx={{ fontFamily: 'Montserrat, Arial, sans-serif' }} // Correct font style
                 >
                   Lets share a satisfying tea party experience together with your guests
                   using the best local tea spices
@@ -133,8 +131,7 @@ export default function Hero() {
                   direction={{ xs: 'column', sm: 'row' }}
                   spacing={1}
                   useFlexGap
-                  sx={{ pt: 2, width: '100%', alignItems: 'center', justifyContent: 'center' }
-                  }
+                  sx={{ pt: 2, width: '100%', alignItems: 'center', justifyContent: 'center' }}
                 >
                   <TextField
                     id="outlined-basic"
@@ -175,10 +172,11 @@ export default function Hero() {
             </Grid>
 
             {/* Column for Cropped Image */}
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} sx={{ display: { xs: 'none', sm: 'block' } }}>
               <Box
                 sx={{
-                  height: '100%',
+                  minHeight: '100vh',  // Ensure the box covers full viewport height
+                  height: 'auto',
                   width: '100%',
                   position: 'relative',
                   overflow: 'hidden',

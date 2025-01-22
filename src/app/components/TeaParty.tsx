@@ -23,44 +23,57 @@ export default function TeaPartySection() {
       <Box
         sx={{
           width: '100%',
-          height: '100vh',  // Set height to 90% of the viewport
+          height: '100vh',  // Full viewport height
           backgroundColor: '#ffffff',  // White background
           color: '#333',  // Dark text color for contrast
-          py: 8,
-          px: 4,  // Adds padding on the left and right sides
+          py: 8,  // Vertical padding
+          px: 4,  // Horizontal padding
           display: 'flex',
           alignItems: 'center',  // Center content vertically
           justifyContent: 'center',  // Center content horizontally
         }}
       >
-        <Container maxWidth="md">  {/* Set maxWidth to control content width */}
+        <Container maxWidth="md"> {/* Set maxWidth to control content width */}
           <Stack spacing={4} textAlign="center">
             <Typography
               variant="h2"
               gutterBottom
+              sx={{
+                fontSize: { xs: '2.5rem', sm: '3rem' }, // Responsive font size
+                fontWeight: 'bold',
+              }}
             >
               Elevate Your Celebration with a Tea Party
             </Typography>
-            <Typography variant="body1" paragraph  >
+            <Typography variant="body1" paragraph sx={{ fontSize: '1.2rem' }}>
               Transform your next event into a delightful experience with a tea party that adds 
-              a touch of elegance and charm. Whether it's a wedding,kwanjula, kugamba bugenyi,kukyaala, bridal shower, or 
+              a touch of elegance and charm. Whether it's a wedding, kwanjula, kugamba bugenyi, kukyaala, bridal shower, or 
               any special occasion, our tea party packages provide a memorable and sophisticated way to celebrate.
             </Typography>
-           <br/>
-            <Typography variant="body1" paragraph sx={{
-    fontFamily: 'Playfair Display, serif',  // Replace with your desired font
-    fontWeight: 'bold',  // Optional: set font weight
-    fontSize: '2rem',  // Optional: adjust font size
-  }}>
-              Let us handle all the details, with a beautiful setup to a powerful service,
-               so you can relax and enjoy the company of your loved ones. 
-               {/* Contact us today to learn more about our tea party packages and make your next celebration a standout event. */}
+            <Typography 
+              variant="body1" 
+              paragraph 
+              sx={{
+                fontFamily: 'Playfair Display, serif',  // Serif font for a classy feel
+                fontWeight: 'bold',
+                fontSize: { xs: '1.5rem', sm: '2rem' },  // Responsive font size
+              }}
+            >
+              Let us handle all the details, from a beautiful setup to powerful service,
+               so you can relax and enjoy the company of your loved ones.
             </Typography>
-            <Button variant="contained" color="primary" href="#contact" sx={{
-    fontFamily: 'Arial, sans-serif',  // Replace with your desired font
-    fontWeight: 'bold',  // Optional: set font weight
-    fontSize: '2rem',  // Optional: adjust font size
-  }}>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              href="#contact" 
+              sx={{
+                fontFamily: 'Arial, sans-serif',
+                fontWeight: 'bold',
+                fontSize: { xs: '1.5rem', sm: '2rem' },  // Responsive font size
+                padding: '10px 20px',
+                mt: 2,  // Margin top to space it from text above
+              }}
+            >
               Book Your Tea Party
             </Button>
           </Stack>
