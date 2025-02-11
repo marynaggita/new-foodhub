@@ -18,9 +18,12 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import getLPTheme from './GetLPTheme';
 import Image from 'next/image';
-import RateCard from './components/RateCard';
-import TwoColumnLayout from './components/TryHero'
 import TeaPartySection from './components/TeaParty';
+import dynamic from 'next/dynamic';  // Import dynamic from next/dynamic
+import Hero2 from './components/Hero2';
+import FeaturedTeas from './components/FeaturedTeas';
+
+const RateCard2 = dynamic(() => import('./components/RateCard'), { ssr: false });
 
 // This is the ToggleCustomTheme component
 interface ToggleCustomThemeProps {
@@ -43,9 +46,9 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }: ToggleCustomT
       <ToggleButtonGroup
         color="primary"
         exclusive
-        value={showCustomTheme ? 'custom' : 'default'}
-        onChange={toggleCustomTheme}
-        aria-label="Platform"
+        value={showCustomTheme ? 'custom' : null}
+        onChange={(event, value) => toggleCustomTheme(event, value === 'custom')}
+        aria-label="Theme Toggle"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {
@@ -53,11 +56,7 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }: ToggleCustomT
           },
         }}
       >
-        <ToggleButton value="custom">
-          {/* <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} /> */}
-          Custom theme
-        </ToggleButton>
-        <ToggleButton value="default">Material Design 2</ToggleButton>
+       
       </ToggleButtonGroup>
     </Box>
   );
@@ -65,7 +64,7 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }: ToggleCustomT
 
 // This is the LandingPage component
 export default function LandingPage() {
-const [mode, setMode] = React.useState<PaletteMode>('light');  
+  const [mode, setMode] = React.useState<PaletteMode>('light');  
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
@@ -84,20 +83,14 @@ const [mode, setMode] = React.useState<PaletteMode>('light');
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
-      <Hero />
+      <Hero2/>
+      {/* <Hero /> */}
       <Divider />
+      <FeaturedTeas />
       <Box sx={{ bgcolor: 'background.default' }}>
-      <Divider />
-      <TeaPartySection/>
-      <Divider />
-      <Divider />
-      
-      <br/>
-      <Divider />
-      {/* <TwoColumnLayout/> */}
-    
-        <RateCard />
-        {/* <Features /> */}
+        <TeaPartySection/>
+        <Divider />
+        <RateCard2 />
         <Divider />
         <Testimonials />
         <Divider />
@@ -109,10 +102,11 @@ const [mode, setMode] = React.useState<PaletteMode>('light');
         <Divider />
         <Footer />
       </Box>
-      {/* <ToggleCustomTheme
+      {/* Uncomment if you want the theme toggle button */}
+      <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
-      /> */}
+      />
     </ThemeProvider>
   );
- }
+}

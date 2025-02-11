@@ -1,84 +1,81 @@
-import React from 'react';
-import { Box, Typography, Stack, Button, Container } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Box, Typography, Button, Container, useTheme, useMediaQuery } from "@mui/material"
 
-// Create a custom theme
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#6D4C41',  // Brown color
-    },
-    secondary: {
-      main: '#B0BEC5',  // Light grey color
-    },
-    background: {
-      default: '#ffffff',  // White background
-    },
-  },
-});
+const TeaPartySection = () => {
+  const theme = useTheme()
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"))
 
-export default function TeaPartySection() {
   return (
-    <ThemeProvider theme={theme}>
+    <Box
+      sx={{
+        width: "100%",
+        height: { xs: "auto", lg: "100vh" },
+        display: "flex",
+        flexDirection: { xs: "column", lg: "row" },
+        alignItems: "center",
+        bgcolor: theme.palette.background.default,
+      }}
+    >
       <Box
+        component="img"
+        src="/path-to-your-image.jpg" // Replace with your image path
+        alt="Tea Party"
         sx={{
-          width: '100%',
-          height: '100vh',  // Full viewport height
-          backgroundColor: '#ffffff',  // White background
-          color: '#333',  // Dark text color for contrast
-          py: 8,  // Vertical padding
-          px: 4,  // Horizontal padding
-          display: 'flex',
-          alignItems: 'center',  // Center content vertically
-          justifyContent: 'center',  // Center content horizontally
+          width: { xs: "100%", lg: "50%" },
+          height: { xs: "300px", sm: "400px", md: "500px", lg: "100%" },
+          objectFit: "cover",
+        }}
+      />
+      <Container
+        maxWidth="lg"
+        sx={{
+          height: { lg: "100%" },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          py: { xs: 4, lg: 0 },
         }}
       >
-        <Container maxWidth="md"> {/* Set maxWidth to control content width */}
-          <Stack spacing={4} textAlign="center">
-            <Typography
-              variant="h2"
-              gutterBottom
-              sx={{
-                fontSize: { xs: '2.5rem', sm: '3rem' }, // Responsive font size
-                fontWeight: 'bold',
-              }}
-            >
-              Elevate Your Celebration with a Tea Party
-            </Typography>
-            <Typography variant="body1" paragraph sx={{ fontSize: '1.2rem' }}>
-              Transform your next event into a delightful experience with a tea party that adds 
-              a touch of elegance and charm. Whether it's a wedding, kwanjula, kugamba bugenyi, kukyaala, bridal shower, or 
-              any special occasion, our tea party packages provide a memorable and sophisticated way to celebrate.
-            </Typography>
-            <Typography 
-              variant="body1" 
-              paragraph 
-              sx={{
-                fontFamily: 'Playfair Display, serif',  // Serif font for a classy feel
-                fontWeight: 'bold',
-                fontSize: { xs: '1.5rem', sm: '2rem' },  // Responsive font size
-              }}
-            >
-              Let us handle all the details, from a beautiful setup to powerful service,
-               so you can relax and enjoy the company of your loved ones.
-            </Typography>
-            <Button 
-              variant="contained" 
-              color="primary" 
-              href="#contact" 
-              sx={{
-                fontFamily: 'Arial, sans-serif',
-                fontWeight: 'bold',
-                fontSize: { xs: '1.5rem', sm: '2rem' },  // Responsive font size
-                padding: '10px 20px',
-                mt: 2,  // Margin top to space it from text above
-              }}
-            >
-              Book Your Tea Party
-            </Button>
-          </Stack>
-        </Container>
-      </Box>
-    </ThemeProvider>
-  );
+        <Box sx={{ maxWidth: "600px", mx: isLargeScreen ? 0 : "auto", textAlign: { xs: "center", lg: "left" } }}>
+          <Typography
+            variant="h2"
+            gutterBottom
+            sx={{
+              fontSize: { xs: "2.5rem", sm: "3rem", md: "3.5rem" },
+              fontWeight: "bold",
+              mb: 2,
+            }}
+          >
+            Elevate Your Celebration with a Tea Party
+          </Typography>
+          <Typography
+            variant="body1"
+            paragraph
+            sx={{
+              fontSize: { xs: "1.2rem", md: "1.3rem" },
+              mb: 4,
+            }}
+          >
+            Transform your next event into a delightful experience with a tea party that adds a touch of elegance and
+            charm. Whether it's a wedding, kwanjula, kugamba bugenyi, kukyaala, bridal shower, or any special occasion,
+            our tea party packages provide a memorable and sophisticated way to celebrate.
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            sx={{
+              fontSize: "1.1rem",
+              py: 1.5,
+              px: 4,
+            }}
+          >
+            Book Your Tea Party
+          </Button>
+        </Box>
+      </Container>
+    </Box>
+  )
 }
+
+export default TeaPartySection
+

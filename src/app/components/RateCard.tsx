@@ -1,8 +1,19 @@
-// components/RateCard.tsx
 import { Box, Typography, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, List, ListItem } from '@mui/material';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-const RateCard = () => {
+export default function RateCard() {
+  // const router = useRouter();
+
+  const handleNavigation = () => {
+    // Example navigation to a specific page
+    // router.push('/some-page');
+  };
+  const handleRowClick = (guests: string) => {
+    console.log(`Row clicked for ${guests}`);
+    // router.push(`/details/${encodeURIComponent(guests)}`);
+  };
+
   return (
     <Box p={4}>
       <Typography variant="h4" gutterBottom textAlign="center">
@@ -76,7 +87,7 @@ const RateCard = () => {
                       { guests: '850 - 900 Guests', price: 'UGX 5.6M' },
                       { guests: '950 - 1000 Guests', price: 'UGX 6.5M' },
                     ].map((row, index) => (
-                      <TableRow key={index}>
+                      <TableRow key={index} onClick={() => handleRowClick(row.guests)} sx={{ cursor: 'pointer' }}>
                         <TableCell
                           align="center"
                           sx={{
@@ -108,4 +119,3 @@ const RateCard = () => {
   );
 };
 
-export default RateCard;
