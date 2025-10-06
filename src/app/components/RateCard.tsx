@@ -1,17 +1,18 @@
+"use client";
 import { Box, Typography, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, List, ListItem } from '@mui/material';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function RateCard() {
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleNavigation = () => {
     // Example navigation to a specific page
     // router.push('/some-page');
   };
   const handleRowClick = (guests: string) => {
-    console.log(`Row clicked for ${guests}`);
-    // router.push(`/details/${encodeURIComponent(guests)}`);
+    console.log(`Selected: ${guests}`);
+        // router.push(`/details/${encodeURIComponent(guests)}`);
   };
 
   return (
@@ -87,25 +88,18 @@ export default function RateCard() {
                       { guests: '850 - 900 Guests', price: 'UGX 5.6M' },
                       { guests: '950 - 1000 Guests', price: 'UGX 6.5M' },
                     ].map((row, index) => (
-                      <TableRow key={index} onClick={() => handleRowClick(row.guests)} sx={{ cursor: 'pointer' }}>
-                        <TableCell
-                          align="center"
-                          sx={{
-                            padding: '12px',
-                            backgroundColor: index % 2 === 0 ? '#f9f9f9' : 'transparent',
-                          }}
-                        >
-                          {row.guests}
-                        </TableCell>
-                        <TableCell
-                          align="center"
-                          sx={{
-                            padding: '12px',
-                            backgroundColor: index % 2 === 0 ? '#f9f9f9' : 'transparent',
-                          }}
-                        >
-                          {row.price}
-                        </TableCell>
+                      <TableRow key={index} 
+                      onClick={() => handleRowClick(row.guests)} 
+                      sx={{  cursor: "pointer",
+                        backgroundColor: index % 2 === 0 ? "#f9f9f9" : "transparent",
+                        "&:hover": { backgroundColor: "#e0e0e0" }, // Hover effect
+                        transition: "background-color 0.3s ease-in-out", }}>
+                        <TableCell align="center" sx={{ padding: "12px" }}>
+                {row.guests}
+              </TableCell>
+              <TableCell align="center" sx={{ padding: "12px" }}>
+                {row.price}
+              </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

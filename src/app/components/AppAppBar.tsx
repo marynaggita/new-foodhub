@@ -19,7 +19,7 @@ interface AppAppBarProps {
   toggleColorMode: () => void
 }
 
-function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
+function AppAppBar() {
   const [open, setOpen] = React.useState(false)
   const theme = useTheme()
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"))
@@ -46,14 +46,14 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
 
   return (
     <AppBar
-      position="fixed"
-      sx={{
-        boxShadow: 0,
-        bgcolor: "transparent",
-        backgroundImage: "none",
-        mt: 2,
-      }}
-    >
+        position="static" // Changed from "fixed" to "static"
+        sx={{
+          boxShadow: 0,
+          bgcolor: "transparent",
+          backgroundImage: "none",
+          mt: 2,
+        }}
+      >
       <Container maxWidth="xl">
         <Toolbar
           variant="regular"
@@ -121,7 +121,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
           </Box>
           {isMdUp ? (
             <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+              {/* <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
               <Button
                 color="primary"
                 variant="text"
@@ -173,7 +173,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
               mb: 2,
             }}
           >
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            {/* <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
           </Box>
           {menuItems.map((item) => (
             <MenuItem key={item} onClick={() => scrollToSection(item)}>

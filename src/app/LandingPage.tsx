@@ -7,9 +7,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import AppAppBar from './components/AppAppBar';
-import Hero from './components/Hero';
-import LogoCollection from './components/LogoCollection';
 import Highlights from './components/Highlights';
 import Pricing from './components/Pricing';
 import Features from './components/Features';
@@ -82,21 +79,23 @@ export default function LandingPage() {
   return (
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
-      <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
+      {/* <AppAppBar mode={mode} toggleColorMode={toggleColorMode} /> */}
+      
       <Hero2/>
       {/* <Hero /> */}
       <Divider />
       <FeaturedTeas />
       <Box sx={{ bgcolor: 'background.default' }}>
+      <Divider />
         <TeaPartySection/>
         <Divider />
         <RateCard2 />
         <Divider />
         <Testimonials />
         <Divider />
-        <Highlights />
-        <Divider />
-        <Pricing />
+        {/* <Highlights /> */}
+        {/* <Divider /> */}
+        {/* <Pricing /> */}
         <Divider />
         <FAQ />
         <Divider />

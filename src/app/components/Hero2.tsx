@@ -1,10 +1,34 @@
 "use client";
-
-import { Box, Grid, Typography, Button, useTheme } from "@mui/material";
-import Image from "next/image";
+import * as React from "react";
+import {
+  AppBar,
+  Box,
+  Grid,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  ThemeProvider,
+  createTheme,
+  responsiveFontSizes,
+  Container,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { motion } from "framer-motion";
 import { brown, grey } from "@mui/material/colors";
-import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+// Scroll handler
+const handleScroll = (sectionId: string) => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 // Create Theme
 let theme = createTheme({
@@ -28,66 +52,151 @@ let theme = createTheme({
 });
 theme = responsiveFontSizes(theme);
 
-const Hero2 = () => {
+function Hero2() {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
+
+  // Mobile Menu Toggle
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Box
-          id="hero"
-          sx={{
-            width: "100%",
-            minHeight: "80vh",
-            paddingTop: { xs: "64px", sm: "80px", md: "80px" }, // Adjusted to match AppBar height
-            background: `linear-gradient(135deg, ${theme.palette.primary.light} 10%, ${theme.palette.primary.main} 90%)`,
-            display: "flex",
-            alignItems: { xs: "flex-start", md: "center" },
-            justifyContent: "center",
-            paddingX: 4,
-            overflow: "hidden",
-          }}
-        >
-        <Grid container spacing={4} alignItems="center">
-          {/* Right Column - Text (First on Large Screens, Second on Mobile) */}
-          <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <Typography variant="h2" fontWeight="bold" color="primary" gutterBottom>
-                The Art of Tea
-              </Typography>
-              <Typography variant="h5" color="textSecondary" paragraph>
-                Discover the rich, aromatic flavors of premium tea blends, crafted to perfection.
-              </Typography>
-              <Button variant="contained" color="primary" size="large" sx={{ mt: 2 }}>
-                Explore Now
-              </Button>
-            </motion.div>
-          </Grid>
+      {/* Navbar */}
+      <AppBar position="absolute" color="transparent" elevation={0}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+          {/* Left side: Logo */}
+          <img src="/images/newLogo.png" alt="Tea Bar Logo" style={{ height: "150px", cursor: "pointer" }} onClick={() => handleScroll("hero")} />
+          {/* <Typography variant="h6" fontWeight="bold" color="white">
+            KaChai.com
+          </Typography> */}
 
-          {/* Left Column - Image (Second on Large Screens, First on Mobile) */}
-          <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
+          {/* Center: Navbar Menu Buttons */}
+          <Box sx={{ display: "flex", justifyContent: "space-between", width: "50%" }}>
+            <Button sx={{ color: "white", fontWeight: "bold" }} onClick={() => handleScroll("hero")}>
+              Home
+            </Button>
+            <Button sx={{ color: "white", fontWeight: "bold" }} onClick={() => handleScroll("tea-options-section")}>
+              Tea Options
+            </Button>
+            <Button sx={{ color: "white", fontWeight: "bold" }} onClick={() => handleScroll("about-section")}>
+              About Us
+            </Button>
+            <Button sx={{ color: "white", fontWeight: "bold" }} onClick={() => handleScroll("contact-section")}>
+              Contact
+            </Button>
+          </Box>
+
+          {/* Right side: Cart Icon */}
+          <IconButton color="inherit">
+            <ShoppingCartIcon fontSize="large" />
+          </IconButton>
+
+          {/* Mobile Menu Icon */}
+          <Box sx={{ display: { xs: "flex", sm: "none" } }}>
+            <IconButton
+              sx={{ color: "white", fontWeight: "bold" }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              edge="start"
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+
+          {/* Mobile Menu */}
+          <Menu
+            anchorEl={anchorEl}
+            open={mobileMenuOpen}
+            onClose={() => setMobileMenuOpen(false)}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <MenuItem onClick={() => handleScroll("hero")}>Home</MenuItem>
+            <MenuItem onClick={() => handleScroll("tea-options-section")}>Tea Options</MenuItem>
+            <MenuItem onClick={() => handleScroll("about-section")}>About Us</MenuItem>
+            <MenuItem onClick={() => handleScroll("contact-section")}>Contact</MenuItem>
+            <MenuItem>
+              <ShoppingCartIcon />
+            </MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
+
+      {/* Hero Section */}
+      <Box
+        id="hero"
+        sx={{
+          width: "100%",
+          height: "100vh", // Full-screen height
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+          backgroundImage: "url('/images/luxytea.jpg')", // Background image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(37, 11, 11, 0.64)", // Adjusted faint effect
+            zIndex: 1,
+          },
+        }}
+      >
+        <Grid
+          container
+          spacing={4}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ position: "relative", zIndex: 2 }}
+        >
+          <Grid item xs={12} md={8}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              <Image
-                src="/images/luxytea.jpg"
-                alt="Luxury Tea"
-                width={4000}
-                height={4000}
-                style={{
-                  borderRadius: "16px",
-                  boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.15)",
-                }}
-              />
+              <Typography variant="h2" fontWeight="bold" color="white" gutterBottom>
+                Brewing Culture, One Cup at a Time
+              </Typography>
+              <Typography variant="h5" color="white" paragraph>
+                Whether You Sip, Brew, or Ferment!
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                sx={{ mt: 2 }}
+                onClick={() => router.push("/TeaOptions")}
+              >
+                Explore Tea Options
+              </Button>
             </motion.div>
           </Grid>
         </Grid>
       </Box>
+
+      
     </ThemeProvider>
   );
-};
+}
 
 export default Hero2;

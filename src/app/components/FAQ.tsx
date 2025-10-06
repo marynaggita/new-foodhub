@@ -1,3 +1,144 @@
+// import * as React from 'react';
+// import Accordion from '@mui/material/Accordion';
+// import AccordionDetails from '@mui/material/AccordionDetails';
+// import AccordionSummary from '@mui/material/AccordionSummary';
+// import Box from '@mui/material/Box';
+// import Container from '@mui/material/Container';
+// import Link from '@mui/material/Link';
+// import Typography from '@mui/material/Typography';
+
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+// export default function FAQ() {
+//   const [expanded, setExpanded] = React.useState<string | false>(false);
+
+//   const handleChange =
+//     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+//       setExpanded(isExpanded ? panel : false);
+//     };
+
+//   return (
+//     <Container
+//       id="faq"
+//       sx={{
+//         pt: { xs: 4, sm: 12 },
+//         pb: { xs: 8, sm: 16 },
+//         position: 'relative',
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'center',
+//         gap: { xs: 3, sm: 6 },
+//       }}
+//     >
+//       <Typography
+//         component="h2"
+//         variant="h4"
+//         color="text.primary"
+//         sx={{
+//           width: { sm: '100%', md: '60%' },
+//           textAlign: { sm: 'left', md: 'center' },
+//         }}
+//       >
+//         Frequently asked questions
+//       </Typography>
+//       <Box sx={{ width: '100%' }}>
+//       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+//   <AccordionSummary
+//     expandIcon={<ExpandMoreIcon />}
+//     aria-controls="panel1-content"
+//     id="panel1-header"
+//   >
+//     <Typography component="h3" variant="subtitle2">
+//       What types of tea experiences do you offer?
+//     </Typography>
+//   </AccordionSummary>
+//   <AccordionDetails>
+//     <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: '100%', md: '70%' } }}>
+//       We offer a wide range of tea experiences, from traditional African tea and spiced blends
+//       to elegant high-tea events. Whether you're planning a wedding, baby shower, or corporate
+//       gathering, we curate the perfect tea service for your occasion.
+//     </Typography>
+//   </AccordionDetails>
+// </Accordion>
+
+// <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+//   <AccordionSummary
+//     expandIcon={<ExpandMoreIcon />}
+//     aria-controls="panel2-content"
+//     id="panel2-header"
+//   >
+//     <Typography component="h3" variant="subtitle2">
+//       How far in advance should I book my tea party?
+//     </Typography>
+//   </AccordionSummary>
+//   <AccordionDetails>
+//     <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: '100%', md: '70%' } }}>
+//       To ensure availability and allow for personalized planning, we recommend booking at least
+//       2–4 weeks in advance. For larger or custom events, more notice is appreciated.
+//     </Typography>
+//   </AccordionDetails>
+// </Accordion>
+
+// <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+//   <AccordionSummary
+//     expandIcon={<ExpandMoreIcon />}
+//     aria-controls="panel3-content"
+//     id="panel3-header"
+//   >
+//     <Typography component="h3" variant="subtitle2">
+//       Can I customize the tea menu for my event?
+//     </Typography>
+//   </AccordionSummary>
+//   <AccordionDetails>
+//     <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: '100%', md: '70%' } }}>
+//       Absolutely. We’ll work with you to design a menu that suits your preferences — from herbal
+//       infusions and black teas to brewed coffee and traditional bushera. You can also choose
+//       between light refreshments or a full-service setup.
+//     </Typography>
+//   </AccordionDetails>
+// </Accordion>
+
+// <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+//   <AccordionSummary
+//     expandIcon={<ExpandMoreIcon />}
+//     aria-controls="panel4-content"
+//     id="panel4-header"
+//   >
+//     <Typography component="h3" variant="subtitle2">
+//       Do you provide setup and cleanup services?
+//     </Typography>
+//   </AccordionSummary>
+//   <AccordionDetails>
+//     <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: '100%', md: '70%' } }}>
+//       Yes, we provide full-service event support. Our team handles the setup, presentation, and
+//       cleanup so you can relax and enjoy the moment with your guests.
+//     </Typography>
+//   </AccordionDetails>
+// </Accordion>
+
+// <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+//   <AccordionSummary
+//     expandIcon={<ExpandMoreIcon />}
+//     aria-controls="panel5-content"
+//     id="panel5-header"
+//   >
+//     <Typography component="h3" variant="subtitle2">
+//       What areas do you serve?
+//     </Typography>
+//   </AccordionSummary>
+//   <AccordionDetails>
+//     <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: '100%', md: '70%' } }}>
+//       We currently serve Kampala and surrounding areas. For special requests outside this region,
+//       feel free to reach out and we’ll do our best to accommodate.
+//     </Typography>
+//   </AccordionDetails>
+// </Accordion>
+
+//       </Box>
+//     </Container>
+//   );
+// }
+
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -6,7 +147,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function FAQ() {
@@ -37,110 +177,104 @@ export default function FAQ() {
         sx={{
           width: { sm: '100%', md: '60%' },
           textAlign: { sm: 'left', md: 'center' },
+          fontSize: { xs: '2rem', sm: '2.5rem' },
+          fontWeight: 700,
         }}
       >
-        Frequently asked questions
+        Frequently Asked Questions
       </Typography>
       <Box sx={{ width: '100%' }}>
-        <Accordion
-          expanded={expanded === 'panel1'}
-          onChange={handleChange('panel1')}
-        >
+        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1d-content"
-            id="panel1d-header"
+            aria-controls="panel1-content"
+            id="panel1-header"
           >
-            <Typography component="h3" variant="subtitle2">
-              How do I contact customer support if I have a question or issue?
+            <Typography
+              component="h3"
+              sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+            >
+              What types of tea experiences do you offer?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ fontSize: { xs: '1rem', sm: '1.125rem' }, maxWidth: { md: '70%' } }}
             >
-              You can reach our customer support team by emailing
-              <Link> support@email.com </Link>
-              or calling our toll-free number. We&apos;re here to assist you
-              promptly.
+              We offer a variety of luxurious tea experiences, including traditional African teas,
+              black and herbal blends,local bushera and custom curated tea party packages perfect for any
+              occasion.
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          expanded={expanded === 'panel2'}
-          onChange={handleChange('panel2')}
-        >
+
+        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2d-content"
-            id="panel2d-header"
+            aria-controls="panel2-content"
+            id="panel2-header"
           >
-            <Typography component="h3" variant="subtitle2">
-              Can I return the product if it doesn&apos;t meet my expectations?
+            <Typography
+              component="h3"
+              sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+            >
+              How far in advance should I book a tea party?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ fontSize: { xs: '1rem', sm: '1.125rem' }, maxWidth: { md: '70%' } }}
             >
-              Absolutely! We offer a hassle-free return policy. If you&apos;re not
-              completely satisfied, you can return the product within [number of
-              days] days for a full refund or exchange.
+              We recommend booking at least 2 weeks in advance to ensure availability, especially
+              for weekend events and special occasions.
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          expanded={expanded === 'panel3'}
-          onChange={handleChange('panel3')}
-        >
+
+        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3d-content"
-            id="panel3d-header"
+            aria-controls="panel3-content"
+            id="panel3-header"
           >
-            <Typography component="h3" variant="subtitle2">
-              What makes your product stand out from others in the market?
+            <Typography
+              component="h3"
+              sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+            >
+              Do you provide custom packages for weddings and events?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ fontSize: { xs: '1rem', sm: '1.125rem' }, maxWidth: { md: '70%' } }}
             >
-              Our product distinguishes itself through its adaptability, durability,
-              and innovative features. We prioritize user satisfaction and
-              continually strive to exceed expectations in every aspect.
+              Absolutely! We specialize in creating tailored tea party experiences for weddings,
+              birthdays, and other celebrations. Each package can be customized to your theme and
+              guest preferences.
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          expanded={expanded === 'panel4'}
-          onChange={handleChange('panel4')}
-        >
+
+        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4d-content"
-            id="panel4d-header"
+            aria-controls="panel4-content"
+            id="panel4-header"
           >
-            <Typography component="h3" variant="subtitle2">
-              Is there a warranty on the product, and what does it cover?
+            <Typography
+              component="h3"
+              sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+            >
+              How can I get in touch for inquiries or support?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ fontSize: { xs: '1rem', sm: '1.125rem' }, maxWidth: { md: '70%' } }}
             >
-              Yes, our product comes with a [length of warranty] warranty. It covers
-              defects in materials and workmanship. If you encounter any issues
-              covered by the warranty, please contact our customer support for
-              assistance.
+              For bookings or questions, email us at
+              <Link href="mailto:info@teabar.com" sx={{ ml: 0.5 }}>info@teabar.com</Link> or call
+              our support line. We're happy to help plan your perfect tea moment.
             </Typography>
           </AccordionDetails>
         </Accordion>

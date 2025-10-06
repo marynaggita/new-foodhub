@@ -7,7 +7,10 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
+import {createTheme,
+  responsiveFontSizes, ThemeProvider,
+} from "@mui/material";
+import { brown, grey } from "@mui/material/colors";
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/X';
@@ -16,12 +19,33 @@ const logoStyle = {
   width: '140px',
   height: 'auto',
 };
+let theme = createTheme({
+  typography: {
+    fontFamily: "Montserrat, Arial, sans-serif",
+  },
+  palette: {
+    primary: {
+      main: brown[700], // Dark Brown
+      light: brown[50], // Light Beige
+    },
+    secondary: {
+      main: grey[300], // Soft Grey
+      light: grey[50], // Light Grey
+    },
+    background: {
+      paper: brown[50],
+      default: grey[50],
+    },
+  },
+});
+theme = responsiveFontSizes(theme);
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
+      {/* <Link href="https://mui.com/">KaChaiCo&nbsp;</Link> */}
+      KaChaiCo
       {new Date().getFullYear()}
     </Typography>
   );
@@ -29,6 +53,7 @@ function Copyright() {
 
 export default function Footer() {
   return (
+    <ThemeProvider theme={theme}>
     <Container
       sx={{
         display: 'flex',
@@ -58,11 +83,9 @@ export default function Footer() {
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
             <Box sx={{ ml: '-15px' }}>
               <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
+                src="../images/newLogo.png"
                 style={logoStyle}
-                alt="logo of sitemark"
+                alt="logo of KaChaiCo"
               />
             </Box>
             <Typography variant="body2" fontWeight={600} gutterBottom>
@@ -85,7 +108,22 @@ export default function Footer() {
                   'aria-label': 'Enter your email address',
                 }}
               />
-              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: '#5d4037',
+                  color: '#fff', // Optional: makes text white
+                  flexShrink: 0,
+                  px: 3,
+                  py: 1.2,
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  textTransform: 'none',
+                  '&:hover': {
+                    backgroundColor: '#4e342e', // slightly darker shade on hover
+                  },
+                }}
+              >
                 Subscribe
               </Button>
             </Stack>
@@ -216,5 +254,6 @@ export default function Footer() {
         </Stack>
       </Box>
     </Container>
+    </ThemeProvider>
   );
 }
