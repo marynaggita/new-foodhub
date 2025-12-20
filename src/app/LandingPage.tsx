@@ -19,6 +19,7 @@ import TeaPartySection from './components/TeaParty';
 import dynamic from 'next/dynamic';  // Import dynamic from next/dynamic
 import Hero2 from './components/Hero2';
 import FeaturedTeas from './components/FeaturedTeas';
+import EmailPopup from './components/EmailPopup';
 
 const RateCard2 = dynamic(() => import('./components/RateCard'), { ssr: false });
 
@@ -44,7 +45,7 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }: ToggleCustomT
         color="primary"
         exclusive
         value={showCustomTheme ? 'custom' : null}
-        onChange={(event, value) => toggleCustomTheme(event, value === 'custom')}
+        onChange={(event, value) => toggleCustomTheme()}
         aria-label="Theme Toggle"
         sx={{
           backgroundColor: 'background.default',
@@ -75,6 +76,19 @@ export default function LandingPage() {
       setShowCustomTheme(newTheme === 'custom');
     }
   };
+  const [showEmailPopup, setShowEmailPopup] = React.useState(false);
+  React.useEffect(() => {
+    const hasSeenPopup = localStorage.getItem("email_popup_seen");
+
+  if (hasSeenPopup) return;
+
+  const timer = setTimeout(() => {
+    setShowEmailPopup(true);
+    localStorage.setItem("email_popup_seen", "true");
+  }, 3000);
+
+  return () => clearTimeout(timer);
+  }, []);
 
   return (
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
@@ -105,6 +119,11 @@ export default function LandingPage() {
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
+      />
+       <EmailPopup
+        open={showEmailPopup}
+        onClose={() => setShowEmailPopup(false)}
+        onSubmit={(email) => console.log("Email submitted:", email)}
       />
     </ThemeProvider>
   );
